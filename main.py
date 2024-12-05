@@ -27,23 +27,25 @@ class Ui_MARFA(object):
         MARFA.setStatusBar(self.statusbar)
 
         self.pixmap = QtGui.QPixmap(self.label.size())
-        self.pixmap.fill(QtGui.QColor("black"))  # Correct way to specify black
+        self.pixmap.fill(QtGui.QColor("black"))
         self.label.setPixmap(self.pixmap)
 
         self.retranslateUi(MARFA)
         QtCore.QMetaObject.connectSlotsByName(MARFA)
 
     def add_circle(self):
-        x, y = [randint(10, 500) for i in range(2)]
-        w, h = [randint(10, 100) for i in range(2)]
+        x = randint(10, self.label.width() - 110)
+        y = randint(10, self.label.height() - 110)
+        diameter = randint(10, 100) # Random diameter
         painter = QtGui.QPainter(self.pixmap)
         pen = QtGui.QPen()
         pen.setWidth(3)
-        pen.setColor(QtGui.QColor(*[randint(0, 255) for i in range(3)]))
+        pen.setColor(QtGui.QColor(255, 255, 0))
         painter.setPen(pen)
-        painter.drawEllipse(x, y, w, h)
+        painter.drawEllipse(x, y, diameter, diameter)
         painter.end()
-        self.label.setPixmap(self.pixmap)  # Update the label
+        self.label.setPixmap(self.pixmap)
+
 
     def retranslateUi(self, MARFA):
         _translate = QtCore.QCoreApplication.translate
